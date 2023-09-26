@@ -3,15 +3,21 @@
 
 #include <math.h>
 
-/* Define if using boost collections. Preferred, because the visual C++ unordered collections are slow and memory hungry. */
-#define HAVE_BOOST_UNORDERED_COLLECTIONS 
-
 #if defined(_MSC_VER)
-#  pragma warning(disable:4201)
+#pragma warning(disable : 4201)
 #endif
 
 #include <math.h>
 
+// These definitions are already provided by Visual Studio 2022
+#if (defined _MSC_VER) && _MSC_VER >= 1929
+
+#else
+
 static inline double round(double value) {
   return (value >= 0) ? floor(value + 0.5) : ceil(value - 0.5);
 }
+
+#endif
+
+typedef int ssize_t;
